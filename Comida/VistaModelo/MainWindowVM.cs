@@ -7,19 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Comida.VistaModelo
 {
     class MainWindowVM : INotifyPropertyChanged
     {
-        private ObservableCollection<Plato> personas;
+        private ObservableCollection<Plato> platos;
 
-        public ObservableCollection<Plato> Personas
+        public ObservableCollection<Plato> Platos
         {
-            get { return personas; }
+            get { return platos; }
             set
             {
-                personas = value;
-                this.NotifyPropertyChanged("Personas");
+                platos = value;
+                this.NotifyPropertyChanged("Platos");
             }
         }
 
@@ -35,8 +36,11 @@ namespace Comida.VistaModelo
             }
         }
 
-
-
+        public MainWindowVM()
+        {
+            Platos = Plato.GetSamples("C:/Users/alumno/Documents/Recursos-Platos-UT5-Actividad/Platos");
+            
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

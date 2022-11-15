@@ -20,23 +20,81 @@
         <Style TargetType="{x:Type CheckBox}">
             <Setter Property="Margin" Value="5"/>
         </Style>
+        <Style TargetType="{x:Type Image}" x:Key="ImagenesBanderas">
+            <Setter Property="DockPanel.Dock" Value="Left"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+            
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Americana">
+                    <Setter Property="Source" Value="/Recursos/Banderas/united_states.png"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="China">
+                    <Setter Property="Source" Value="/Recursos/Banderas/china.png"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Mexicana">
+                    <Setter Property="Source" Value="/Recursos/Banderas/mexico.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type Image}" x:Key="ImagenesAlergenos">
+            <Setter Property="DockPanel.Dock" Value="Right"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+
+        <Style TargetType="{x:Type Image}" x:Key="ImagenSoja" BasedOn="{StaticResource ImagenesAlergenos}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Soja}" Value="true">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Image}" x:Key="ImagenLeche" BasedOn="{StaticResource ImagenesAlergenos}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Leche}" Value="true">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Image}" x:Key="ImagenGluten" BasedOn="{StaticResource ImagenesAlergenos}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Gluten}" Value="true">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Image}" x:Key="ImagenSulfitos" BasedOn="{StaticResource ImagenesAlergenos}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Sulfitos}" Value="true">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        
         <DataTemplate x:Key="plantillaPlatos">
             <DockPanel LastChildFill="False">
                 <TextBlock Text="{Binding Path=Nombre}" DockPanel.Dock="Top"/>
                 <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
-                    <Image Source="{Binding Path=Bandera}" DockPanel.Dock="Left"/>
-                    <Image Source="{Binding Path=Alergenos}" DockPanel.Dock="Right"/>
+                    <Image  Style="{StaticResource ImagenesBanderas}"/>
+                    <Image Source="./Recursos/Alergenos/soybean.png" Style="{StaticResource ImagenSoja}"/>
+                    <Image Source="./Recursos/Alergenos/sulfide.png" Style="{StaticResource ImagenSulfitos}"/>
+                    <Image Source="./Recursos/Alergenos/milk.png" Style="{StaticResource ImagenLeche}"/>
+                    <Image Source="./Recursos/Alergenos/gluten.png" Style="{StaticResource ImagenGluten}"/>
                 </DockPanel>
-                <Image Source="{Binding Path=Imagen}"/>
+                <Image Source="{Binding Path=Imagen}" Width="100" Height="100"/>
             </DockPanel>
         </DataTemplate>
     </Window.Resources>
     <Border Style="{StaticResource BorderDockPanel}">
         <DockPanel Background="White" LastChildFill="False">
-            <WrapPanel DockPanel.Dock="Left" Margin="10">
-                <ListBox ItemsSource="{Binding Path=Plato}" SelectedItem="{Binding Path=PlatoSeleccionado}" ItemTemplate="{StaticResource plantillaPlatos}" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+            <WrapPanel DockPanel.Dock="Left" Margin="10" Orientation="Horizontal">
+                <ListBox ItemsSource="{Binding Path=Platos}" SelectedItem="{Binding Path=PlatoSeleccionado}" ItemTemplate="{StaticResource plantillaPlatos}" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
             </WrapPanel>
-            <DockPanel DockPanel.Dock="Right" Width="200" LastChildFill="False" Background="#DDDDDD" Margin="10">
+            <DockPanel DockPanel.Dock="Right" Width="280" LastChildFill="False" Background="#DDDDDD" Margin="10">
                 <StackPanel DockPanel.Dock="Top">
                     <TextBlock Text="Nombre del Plato"/>
                     <TextBox></TextBox>
@@ -48,7 +106,11 @@
                 
                 <StackPanel DockPanel.Dock="Top">
                     <TextBlock Text="Tipo de Comida"/>
-                    <ComboBox></ComboBox>
+                    <ComboBox>
+                        <ComboBoxItem>Americana</ComboBoxItem>
+                        <ComboBoxItem>China</ComboBoxItem>
+                        <ComboBoxItem>Mexicana</ComboBoxItem>
+                    </ComboBox>
                 </StackPanel>
                 <GroupBox Margin="10" Header="Alergenos" DockPanel.Dock="Top">
                     <Grid>

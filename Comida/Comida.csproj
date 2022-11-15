@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Convertidor\ConvertidorNombrePlato.cs" />
     <Compile Include="VistaModelo\MainWindowVM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -98,14 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Platos\burguer.jpg" />
-    <Resource Include="Recursos\Platos\cerdoagridulce.jpg" />
-    <Resource Include="Recursos\Platos\dumplings.jpg" />
-    <Resource Include="Recursos\Platos\fajitas.jpg" />
-    <Resource Include="Recursos\Platos\hotdog.jpg" />
-    <Resource Include="Recursos\Platos\tacos.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Icono\fruit_food_apple.ico" />
