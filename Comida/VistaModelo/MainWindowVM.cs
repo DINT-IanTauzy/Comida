@@ -48,7 +48,7 @@ namespace Comida.VistaModelo
             }
         }
 
-        public void LimpiarSeleccio()
+        public void LimpiarSeleccion()
         {
             PlatoSeleccionado = null;
         }
@@ -56,6 +56,7 @@ namespace Comida.VistaModelo
         public MainWindowVM()
         {
             Platos = Plato.GetSamples("C:/Users/alumno/Documents/Recursos-Platos-UT5-Actividad/Platos");
+            Tipos = new ObservableCollection<string> { "China", "Americana", "Mexicana" };
             
         }
 

@@ -28,5 +28,10 @@ namespace Comida
             vm = new MainWindowVM();
             this.DataContext=vm;
         }
+
+        private void LimpiarSeleccion_Click(object sender, RoutedEventArgs e)
+        {
+            vm.LimpiarSeleccion();
+        }
     }
 }
