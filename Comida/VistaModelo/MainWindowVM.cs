@@ -24,16 +24,33 @@ namespace Comida.VistaModelo
             }
         }
 
+        private ObservableCollection<String> tipos;
+
+        public ObservableCollection<String> Tipos
+        {
+            get { return tipos; }
+            set
+            {
+                tipos = value;
+                this.NotifyPropertyChanged("Tipos");
+            }
+        }
+
         private Plato platoSeleccionado;
 
-        public Plato PersonaSeleccionada
+        public Plato PlatoSeleccionado
         {
             get { return platoSeleccionado; }
             set
             {
                 platoSeleccionado = value;
-                this.NotifyPropertyChanged("PersonaSeleccionada");
+                this.NotifyPropertyChanged("PlatoSeleccionado");
             }
+        }
+
+        public void LimpiarSeleccio()
+        {
+            PlatoSeleccionado = null;
         }
 
         public MainWindowVM()

@@ -13,12 +13,17 @@ namespace Comida.Convertidor
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            
             switch (value.ToString())
             {
                 case "China":
-
                     return new FontFamily("Chinese Wok Food St");
+                case "Mexicana":
+                    return new FontFamily("Taco Salad");
+                case "Americana":
+                    return new FontFamily("Slim Summer");
             }
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
